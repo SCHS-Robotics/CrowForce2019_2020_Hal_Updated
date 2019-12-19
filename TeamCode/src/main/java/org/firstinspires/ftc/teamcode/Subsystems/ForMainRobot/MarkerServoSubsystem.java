@@ -8,25 +8,22 @@ import com.SCHSRobotics.HAL9001.util.misc.Button;
 import com.SCHSRobotics.HAL9001.util.misc.ConfigParam;
 import com.SCHSRobotics.HAL9001.util.misc.CustomizableGamepad;
 import com.SCHSRobotics.HAL9001.util.misc.Toggle;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class IntakeSubSystemServo extends SubSystem {
-    private CustomizableGamepad inputs;
-    Servo IntakeServo;
+public class MarkerServoSubsystem extends SubSystem {
+    CustomizableGamepad inputs;
+    public Servo MarkerServo;
     private final int DOWN = 1;
-    private final double UP = 0.75;
-    Toggle toggle = new Toggle(Toggle.ToggleTypes.flipToggle, true);
+    private final double UP = 0.5;
+    Toggle toggle = new Toggle(Toggle.ToggleTypes.flipToggle, false);
+    static final String MARKERBUTTON = "MarkerButton";
 
-
-    static final String INTAKEBUTTON = "IntakeButton";
-
-    public IntakeSubSystemServo(Robot r, String servo) {
+    public MarkerServoSubsystem(Robot r, String markerServo) {
         super(r);
-        IntakeServo = robot.hardwareMap.servo.get(servo);
+        MarkerServo = robot.hardwareMap.servo.get(markerServo);
         usesConfig = true;
     }
-
 
     @Override
     public void init() throws InterruptedException {
@@ -41,34 +38,25 @@ public class IntakeSubSystemServo extends SubSystem {
     public void start() throws InterruptedException {
         inputs = robot.pullControls(this);
     }
+
     @Override
-    public void handle () throws InterruptedException {
-        toggle.updateToggle(inputs.getBooleanInput(INTAKEBUTTON));
+    public void handle() throws InterruptedException {
+        robot.telemetry.addData("MarkerButton", inputs.getBooleanInput(MARKERBUTTON));
+        robot.telemetry.addData("Toggle State", toggle.getCurrentState());
+        robot.telemetry.update();
+        toggle.updateToggle(inputs.getBooleanInput(MARKERBUTTON));
         if (toggle.getCurrentState()) {
-            IntakeServo.setPosition(DOWN);
+            MarkerServo.setPosition(1);
         }
         else {
-            IntakeServo.setPosition(UP);
+            MarkerServo.setPosition(.5);
         }
-
     }
 
     @Override
-    public void stop () throws InterruptedException {
+    public void stop() throws InterruptedException {
 
     }
-
-    public void intake () {
-        IntakeServo.setPosition(DOWN);
-    }
-
-
-    public void output() {
-            IntakeServo.setPosition(UP);
-        }
-
-
-
 
     @Override
     protected void initVars() {
@@ -76,12 +64,10 @@ public class IntakeSubSystemServo extends SubSystem {
 
     }
 
-
     @TeleopConfig
     public static ConfigParam[] teleopConfig() {
         return new ConfigParam[]{
-                new ConfigParam(INTAKEBUTTON, Button.BooleanInputs.right_bumper,2)
+                new ConfigParam(MARKERBUTTON, Button.BooleanInputs.y, 2)
         };
     }
 }
-

@@ -37,7 +37,8 @@ public class EncoderSubsystem extends SubSystem {
 
     @Override
     public void handle() throws InterruptedException {
-        dMenu.addData("Encoders", motor.getCurrentPosition());
+        robot.telemetry.addData("Encoders", motor.getCurrentPosition());
+        robot.telemetry.update();
     }
 
     @Override

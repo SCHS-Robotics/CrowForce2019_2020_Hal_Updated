@@ -19,7 +19,7 @@ public class ForwardTestRobot extends Robot {
         .setDriveStick(new Button(1, Button.VectorInputs.left_stick))
         .setTurnStick(new Button(1, Button.DoubleInput` s.right_stick_x))
         .setSpeedModeMultiplier(.25));*/
-        encoder = new EncoderSubsystem(this, "1");
+        //encoder = new EncoderSubsystem(this, "1");
         //putSubSystem("Mechanum Drive", drive);
         putSubSystem("EncoderSubsytem", encoder);
 

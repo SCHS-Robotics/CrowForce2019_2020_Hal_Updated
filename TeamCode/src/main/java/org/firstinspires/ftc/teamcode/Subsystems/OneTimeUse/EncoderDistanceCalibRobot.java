@@ -20,7 +20,7 @@ public class EncoderDistanceCalibRobot extends Robot {
         super(opMode);
         startGui(new Button(1, Button.BooleanInputs.b));
         EncoderDist = new BetterEncoderCalibProgram(this, BetterEncoderCalibProgram.DriveTrain.MECHANUM_DRIVE, Units.INCH, new MechanumDrive.Params("topLeft", "topRight", "bottomLeft", "bottomRight"), new Button(1, Button.BooleanInputs.a));
-        EncoderNum = new EncoderSubsystem(this, "topRight");
+        EncoderNum = new EncoderSubsystem(this, "topRight", "topLeft");
 
         super.putSubSystem("EncoderInput", EncoderNum);
         super.putSubSystem("EncoderDistanceCalibTest", EncoderDist);

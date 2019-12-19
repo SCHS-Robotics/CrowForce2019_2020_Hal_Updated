@@ -51,27 +51,23 @@ public class FoundationGrabberSubsystem extends SubSystem {
 
     @Override
     public void handle() throws InterruptedException {
-        fMenu.addData(ARMBUTTON, gpad.getBooleanInput(ARMBUTTON));
-        toggle.updateToggle(gpad.getBooleanInput(ARMBUTTON));
         if(gpad.getBooleanInput(ARMUPBUTTON)) {
             arm.setPower(-1);
         }
 
         else if (toggle.getCurrentState()) {
-            arm.setPower(DOWN);
+            arm.setPower(1);
         }
          else {
-            arm.setPower(0.5);
+            arm.setPower(0);
         }
 
 
-        fMenu.addData(ARMUPBUTTON, gpad.getBooleanInput(ARMUPBUTTON));
         //for toggle
         //toggle.updateToggle(gpad.getBooleanInput(ARMUPBUTTON));
 
 
-
-}
+    }
 
     @Override
     public void stop() throws InterruptedException {
@@ -83,11 +79,27 @@ public class FoundationGrabberSubsystem extends SubSystem {
     public void initVars() { super.initVars(); }
 
     public void toggleDown() {
-        arm.setPower(DOWN);
+        long startTime = System.currentTimeMillis();
+        arm.setPower(1);
+
+        while (System.currentTimeMillis() - startTime < 470) {
+            robot.telemetry.addData("death","");
+            arm.setPower(1);
+            robot.telemetry.update();
+        }
+        arm.setPower(0);
     }
 
     public void toggleUp() {
-        arm.setPower(UP);
+        long startTime = System.currentTimeMillis();
+        arm.setPower(-1);
+
+        while (System.currentTimeMillis() - startTime < 470) {
+            robot.telemetry.addData("death","");
+            arm.setPower(-1);
+            robot.telemetry.update();
+        }
+        arm.setPower(0);
     }
     
     public void toggleOff(){arm.setPower(.5);}
@@ -106,8 +118,8 @@ public class FoundationGrabberSubsystem extends SubSystem {
     @TeleopConfig
     public static ConfigParam[] teleopConfig() {
         return new ConfigParam[] {
-                new ConfigParam("armToggleButton", Button.BooleanInputs.b),
-                new ConfigParam("armUpButton", Button.BooleanInputs.dpad_up)
+                new ConfigParam("armToggleButton", Button.BooleanInputs.b,2),
+                new ConfigParam("armUpButton", Button.BooleanInputs.a,2)
         };
     }
 }
