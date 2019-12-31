@@ -32,7 +32,7 @@ public class FoundationGrabberSubsystem extends SubSystem {
 
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
         if (robot.usesGUI()) {
             fMenu = new DisplayMenu(robot.gui);
             robot.gui.addMenu("buttonData", fMenu);
@@ -40,17 +40,17 @@ public class FoundationGrabberSubsystem extends SubSystem {
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start()  {
         gpad = robot.pullControls(this);
     }
 
     @Override
-    public void handle() throws InterruptedException {
+    public void handle()  {
         if(gpad.getBooleanInput(ARMUPBUTTON)) {
             arm.setPower(-1);
         }
@@ -70,7 +70,7 @@ public class FoundationGrabberSubsystem extends SubSystem {
     }
 
     @Override
-    public void stop() throws InterruptedException {
+    public void stop()  {
 
     }
 
@@ -104,12 +104,12 @@ public class FoundationGrabberSubsystem extends SubSystem {
     
     public void toggleOff(){arm.setPower(.5);}
 
-    public void pullUp(int timeMs) throws InterruptedException {
+    public void pullUp(int timeMs)  {
         toggleUp();
 
         long startTime = System.currentTimeMillis();
         while (System.currentTimeMillis() - startTime < timeMs && robot.opModeIsActive()) {
-            sleep(1);
+
         }
 
         toggleOff();

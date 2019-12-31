@@ -29,7 +29,7 @@ public class NewIntakeSubSystemServo extends SubSystem {
     private DisplayMenu dMenu;
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
         if(robot.usesGUI()) {
             dMenu = new DisplayMenu(robot.gui);
             robot.gui.addMenu("buttonData", dMenu);
@@ -37,16 +37,16 @@ public class NewIntakeSubSystemServo extends SubSystem {
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start()  {
         inputs = robot.pullControls(this);
     }
     @Override
-    public void handle () throws InterruptedException {
+    public void handle ()  {
         dMenu.addData("IntakeButton", inputs.getBooleanInput(INTAKEBUTTON));
         toggle.updateToggle(inputs.getBooleanInput(INTAKEBUTTON));
         if (toggle.getCurrentState()) {
@@ -58,7 +58,7 @@ public class NewIntakeSubSystemServo extends SubSystem {
     }
 
     @Override
-    public void stop () throws InterruptedException {
+    public void stop ()  {
 
     }
 

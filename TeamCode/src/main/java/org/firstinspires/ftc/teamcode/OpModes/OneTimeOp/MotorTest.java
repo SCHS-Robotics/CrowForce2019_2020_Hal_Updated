@@ -19,22 +19,22 @@ public class MotorTest extends SubSystem {
     DcMotor motor1;
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
         motor1 = robot.hardwareMap.dcMotor.get("1");
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start()  {
 
     }
 
     @Override
-    public void handle() throws InterruptedException {
+    public void handle()  {
         if(robot.gamepad1.a){
             motor1.setPower(1);
         }
@@ -53,7 +53,7 @@ public class MotorTest extends SubSystem {
     }
 
     @Override
-    public void stop() throws InterruptedException {
+    public void stop()  {
 
     }
 }

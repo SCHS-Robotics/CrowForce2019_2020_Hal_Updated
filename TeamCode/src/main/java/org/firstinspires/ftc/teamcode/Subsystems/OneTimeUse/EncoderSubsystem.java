@@ -15,7 +15,9 @@ public class EncoderSubsystem extends SubSystem {
     public EncoderSubsystem(Robot r, String fMotor, String sMotor) {
         super(r);
         dMenu = new DisplayMenu(robot.gui);
-        robot.gui.addMenu("display", dMenu);
+        strafeMotor = robot.hardwareMap.dcMotor.get("strafeEncoder");
+        forwardMotor = robot.hardwareMap.dcMotor.get("forwardEncoder");
+
         forwardMotor = robot.hardwareMap.dcMotor.get(fMotor);
         strafeMotor = robot.hardwareMap.dcMotor.get(sMotor);
     }
@@ -29,17 +31,17 @@ public class EncoderSubsystem extends SubSystem {
     }
 
     @Override
-    public void init() throws InterruptedException {
+    public void init(){
 
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop() {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start(){
         forwardMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         forwardMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         strafeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -47,13 +49,14 @@ public class EncoderSubsystem extends SubSystem {
     }
 
     @Override
-    public void handle() throws InterruptedException {
-        dMenu.addData("Pos: ", forwardMotor.getCurrentPosition());
-        dMenu.addData("Pos: ", strafeMotor.getCurrentPosition());
+    public void handle() {
+        robot.telemetry.addData("forward", fEncoders());
+        robot.telemetry.addData("strafe", sEncoders());
+        robot.telemetry.update();
     }
 
     @Override
-    public void stop() throws InterruptedException {
+    public void stop() {
 
     }
 }

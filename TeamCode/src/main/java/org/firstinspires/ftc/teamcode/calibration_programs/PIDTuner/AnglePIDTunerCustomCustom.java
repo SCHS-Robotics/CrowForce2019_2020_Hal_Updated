@@ -25,27 +25,27 @@ public class AnglePIDTunerCustomCustom extends SubSystem {
     }
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
 
     }
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start()  {
    // double time1 = robot.;
     }
 
     @Override
-    public void handle() throws InterruptedException {
+    public void handle()  {
 
 
     }
 
     @Override
-    public void stop() throws InterruptedException {
+    public void stop() {
 
     }
 }

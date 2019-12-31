@@ -88,42 +88,42 @@ public class Autonomouss extends BaseAutonomous {
         turnEncoders(0.3, 400 + processor.getEncoderAmount(distDif, Units.INCH));
     }
 
-    public void nin() throws InterruptedException {
+    public void nin() {
         //45 degrees is 500 ms
     turnEncoders (0.3, 400);
     }
 
-    public void negnin(int distDif) throws InterruptedException {
+    public void negnin(int distDif){
         turnEncoders(-0.3, 400 + processor.getEncoderAmount(distDif, Units.INCH));
     }
 
-    public void negnin() throws InterruptedException {
+    public void negnin(){
         turnEncoders(-0.3, 400);
     }
 
-    public void moveFound(String color) throws InterruptedException {
+    public void moveFound(String color) {
         if (color.equalsIgnoreCase("Red")) {
             robot.grabber.toggleDown();
-            //robot.mDrive.driveTime(new Vector(0,0.15), 2700);
+            //robot.mDrive.driveTime(new Vector(0,0pow1), 2700);
             long startTime = System.currentTimeMillis();
             while(System.currentTimeMillis() - startTime < 4000) {
-                robot.mDrive.setBotLeftPower(0.2);
-                robot.mDrive.setBotRightPower(.2);
-                robot.mDrive.setTopLeftPower(.2);
-                robot.mDrive.setTopRightPower(.2);
+                robot.mDrive.setBotLeftPower(pow1);
+                robot.mDrive.setBotRightPower(pow1);
+                robot.mDrive.setTopLeftPower(pow1);
+                robot.mDrive.setTopRightPower(pow1);
 
             }
             robot.mDrive.stopAllMotors();
             robot.grabber.toggleUp();
         } else {
             robot.grabber.toggleDown();
-           // robot.mDrive.driveTime(new Vector(0,0.15), 2700);
+           // robot.mDrive.driveTime(new Vector(0,0pow1), 2700);
             long startTime = System.currentTimeMillis();
             while(System.currentTimeMillis() - startTime < 2700) {
-                robot.mDrive.setBotLeftPower(0.2);
-                robot.mDrive.setBotRightPower(.2);
-                robot.mDrive.setTopLeftPower(.2);
-                robot.mDrive.setTopRightPower(.2);
+                robot.mDrive.setBotLeftPower(pow1);
+                robot.mDrive.setBotRightPower(pow1);
+                robot.mDrive.setTopLeftPower(pow1);
+                robot.mDrive.setTopRightPower(pow1);
 
             }
             robot.mDrive.stopAllMotors();
@@ -131,272 +131,272 @@ public class Autonomouss extends BaseAutonomous {
         }
     }
 
-    public void getBlock1Res(String color) throws InterruptedException {
-        if (color.equalsIgnoreCase("Blue") /*&& skystoneInd = 1;*/) { /* negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos);*/
-            driveEncoders(.15, oneTile);
+    public void getBlock1Res(String color) {
+        if (color.equalsIgnoreCase("Blue") /*&& skystoneInd = 1;*/) { /* negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos);*/
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
+            driveEncoders(-pow1, oneTile);
             negnin();
-            driveEncoders(.15, specBlock1);
+            driveEncoders(pow1, specBlock1);
             negnin();
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, twoTile);
+            driveEncoders(-pow1, twoTile);
             moveFound("Blue");
-            driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
             negnin();
-            driveEncoders(.15, oneTile);
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
-            negnin(); /*negnin(); negnin(); driveEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); negnin(); negnin();*/
-            driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
-            driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+            driveEncoders(-pow1, oneTile);
+            negnin(); /*negnin(); negnin(); driveEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); negnin(); negnin();*/
+            driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
-        } else { /*nin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); driveEncoders(.15, specBlock1); negnin();*/
-            driveEncoders(.15, oneTile);
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
+        } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, specBlock1); negnin();*/
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
+            driveEncoders(-pow1, oneTile);
             nin();
-            driveEncoders(.15, specBlock1);
+            driveEncoders(pow1, specBlock1);
             nin();
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, twoTile);
+            driveEncoders(-pow1, twoTile);
             moveFound("Red");
-            driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
             negnin();
-            driveEncoders(.15, oneTile);
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
-            nin(); /*negnin(); negnin(); driveEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); negnin(); negnin(); ?? think through and fix cause I copy/pasted from the blue side code*/
-            driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
-            driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+            driveEncoders(-pow1, oneTile);
+            nin(); /*negnin(); negnin(); driveEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); negnin(); negnin(); ?? think through and fix cause I copy/pasted from the blue side code*/
+            driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
         }
     }
 
     public void getBlock2Res(String color) throws InterruptedException {
-        if (color.equalsIgnoreCase("Blue") /*&& skystoneInd = 2*/) { /* negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos); driveEncoders(.15, specBlock2); nin();*/
-            driveEncoders(.15, oneTile);
+        if (color.equalsIgnoreCase("Blue") /*&& skystoneInd = 2*/) { /* negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock2); nin();*/
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
+            driveEncoders(-pow1, oneTile);
             negnin();
-            driveEncoders(.15, specBlock1);
+            driveEncoders(pow1, specBlock1);
             negnin();
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, twoTile);
+            driveEncoders(-pow1, twoTile);
             moveFound("Blue");
-            driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
             negnin();
-            driveEncoders(.15, oneTile);
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile); /* negnin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); negnin(); negnin();*/
-            driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
-            driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+            driveEncoders(-pow1, oneTile); /* negnin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); negnin(); negnin();*/
+            driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
-        } else { /*nin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); driveEncoders(.15, specBlock2); negnin();*/
-            driveEncoders(.15, oneTile);
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
+        } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, specBlock2); negnin();*/
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
+            driveEncoders(-pow1, oneTile);
             nin();
-            driveEncoders(.15, specBlock2);
+            driveEncoders(pow1, specBlock2);
             nin();
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, twoTile);
+            driveEncoders(-pow1, twoTile);
             moveFound("Red");
-            driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
             nin();
-            driveEncoders(.15, oneTile);
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
-            negnin(); /* negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos); negnin(); negnin();*/
-            driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
-            driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+            driveEncoders(-pow1, oneTile);
+            negnin(); /* negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
+            driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
         }
     }
 
     public void getBlock3Res(String color) throws InterruptedException {
-        if (color.equalsIgnoreCase("Blue")) { /* negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos); driveEncoders(.15, specBlock3); nin();*/
-            driveEncoders(.15, oneTile);
+        if (color.equalsIgnoreCase("Blue")) { /* negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock3); nin();*/
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
+            driveEncoders(-pow1, oneTile);
             negnin();
-            driveEncoders(.15, specBlock1);
+            driveEncoders(pow1, specBlock1);
             negnin();
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, twoTile);
+            driveEncoders(-pow1, twoTile);
             moveFound("Blue");
-            driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
             negnin();
-            driveEncoders(.15, oneTile);
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile); /*negnin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); negnin(); negnin();*/
-            driveEncoders(.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
-            driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+            driveEncoders(-pow1, oneTile); /*negnin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); negnin(); negnin();*/
+            driveEncoders(pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
-        } else { /*nin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); driveEncoders(.15, specBlock3);*/
-            driveEncoders(.15, oneTile);
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
+        } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, specBlock3);*/
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
+            driveEncoders(-pow1, oneTile);
             negnin();
-            driveEncoders(.15, specBlock1);
+            driveEncoders(pow1, specBlock1);
             negnin();
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, twoTile);
+            driveEncoders(-pow1, twoTile);
             moveFound("Blue");
-            driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
             negnin();
-            driveEncoders(.15, oneTile);
+            driveEncoders(pow1, oneTile);
             robot.blockIntakeServo.intake();
-            driveEncoders(-.15, oneTile);
-            negnin(); /* negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos); negnin(); negnin();*/
-            driveEncoders(.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
-            driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+            driveEncoders(-pow1, oneTile);
+            negnin(); /* negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
+            driveEncoders(pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
             robot.blockIntakeServo.output();
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
         }
     }
 
     public void getBlockBuild(String color) throws InterruptedException {
         if (color.equalsIgnoreCase("Blue")) {
-            driveEncoders(.15, processor.getEncoderAmount(5, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(5, Units.INCH));
             negnin();
             moveFound("Blue");
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
             nin();
             //run opencv
-            if (layout1 = true) { /*negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos);*/
-                driveEncoders(.15, oneTile);
+            if (layout1 = true) { /*negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos);*/
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 negnin();
-                driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, specBlock1);
+                driveEncoders(-pow1, specBlock1);
                 nin();
-                driveEncoders(.15, oneTile);
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 negnin();
-                driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(5, Units.INCH)); /*nin(); nin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); nin(); nin();*/
-                driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
-                driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(5, Units.INCH)); /*nin(); nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); nin(); nin();*/
+                driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
-            } else if (layout2 = true) { /*negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos);*/
-                driveEncoders(.15, oneTile);
+                driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
+            } else if (layout2 = true) { /*negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos);*/
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 negnin();
-                driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, specBlock2);
+                driveEncoders(-pow1, specBlock2);
                 nin();
-                driveEncoders(.15, oneTile);
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 negnin();
-                driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(5, Units.INCH)); /*nin(); nin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); nin(); nin();*/
-                driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
-                driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(5, Units.INCH)); /*nin(); nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); nin(); nin();*/
+                driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
-            } else if (layout3 = true) { /*negnin(); strafeEncoders(.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, blockPos);*/
-                driveEncoders(.15, oneTile);
+                driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
+            } else if (layout3 = true) { /*negnin(); strafeEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, blockPos);*/
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 negnin();
-                driveEncoders(.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, specBlock3);
+                driveEncoders(-pow1, specBlock3);
                 nin();
-                driveEncoders(.15, oneTile);
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 negnin();
-                driveEncoders(.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(5, Units.INCH)); /*nin(); nin(); strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, blockPos); nin(); nin();*/
-                driveEncoders(.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
-                driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(5, Units.INCH)); /*nin(); nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, blockPos); nin(); nin();*/
+                driveEncoders(pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
             }
         } else {
-            driveEncoders(.15, processor.getEncoderAmount(5, Units.INCH));
+            driveEncoders(pow1, processor.getEncoderAmount(5, Units.INCH));
             negnin();
             moveFound("Red");
-            driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
+            driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
             negnin();
             //run opencv
-            if (layout1 = true) { /*strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(.15, specBlock1);*/
-                driveEncoders(.15, oneTile);
+            if (layout1 = true) { /*strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(pow1, specBlock1);*/
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 nin();
-                driveEncoders(.15, specBlock1);
+                driveEncoders(pow1, specBlock1);
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(-pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
                 negnin();
-                driveEncoders(.15, oneTile);
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 nin();
-                driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(5, Units.INCH)); /*negnin(); negnin(); strafeEncoders(.15, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, processor.getEncoderAmount(4, Units.INCH)); negnin(); negnin();*/
-                driveEncoders(.15, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
-                driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(5, Units.INCH)); /*negnin(); negnin(); strafeEncoders(pow1, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, processor.getEncoderAmount(4, Units.INCH)); negnin(); negnin();*/
+                driveEncoders(pow1, specBlock1 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
-            } else if (layout2 = true) { /*strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(.15, specBlock1);*/
-                driveEncoders(.15, oneTile);
+                driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
+            } else if (layout2 = true) { /*strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(pow1, specBlock1);*/
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 nin();
-                driveEncoders(.15, specBlock2);
+                driveEncoders(pow1, specBlock2);
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(-pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
                 negnin();
-                driveEncoders(.15, oneTile);
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 nin();
-                driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(5, Units.INCH)); /*negnin(); negnin(); strafeEncoders(.15, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, processor.getEncoderAmount(4, Units.INCH)); negnin(); negnin();*/
-                driveEncoders(.15, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
-                driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(5, Units.INCH)); /*negnin(); negnin(); strafeEncoders(pow1, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, processor.getEncoderAmount(4, Units.INCH)); negnin(); negnin();*/
+                driveEncoders(pow1, specBlock2 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
-            } else if (layout3 = true) { /*strafeEncoders(-.15, blockPos); driveEncoders(.15, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(.15, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(.15, specBlock1);*/
-                driveEncoders(.15, oneTile);
+                driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
+            } else if (layout3 = true) { /*strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(pow1, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(pow1, specBlock1);*/
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 nin();
-                driveEncoders(.15, specBlock3);
+                driveEncoders(pow1, specBlock3);
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(-pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
                 negnin();
-                driveEncoders(.15, oneTile);
+                driveEncoders(pow1, oneTile);
                 robot.blockIntakeServo.intake();
-                driveEncoders(-.15, oneTile);
+                driveEncoders(-pow1, oneTile);
                 nin();
-                driveEncoders(.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(5, Units.INCH)); /*negnin(); negnin(); strafeEncoders(.15, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-.15, processor.getEncoderAmount(4, Units.INCH)); negnin(); negnin();*/
-                driveEncoders(.15, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
-                driveEncoders(.15, processor.getEncoderAmount(3, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(5, Units.INCH)); /*negnin(); negnin(); strafeEncoders(pow1, processor.getEncoderAmount(4, Units.INCH)); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intake(); strafeEncoders(-pow1, processor.getEncoderAmount(4, Units.INCH)); negnin(); negnin();*/
+                driveEncoders(pow1, specBlock3 + processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH));
                 robot.blockIntakeServo.output();
-                driveEncoders(-.15, processor.getEncoderAmount(6, Units.INCH));
+                driveEncoders(-pow1, processor.getEncoderAmount(6, Units.INCH));
             }
         }
     }
@@ -419,6 +419,8 @@ public class Autonomouss extends BaseAutonomous {
     boolean layout3 = false;
     boolean once = true;
     int i = 0;
+    double pow1 = .7;
+    double pow2 = 0.5;
     DcMotor topLeft;
     DcMotor topRight;
     DcMotor botRight;
@@ -426,7 +428,7 @@ public class Autonomouss extends BaseAutonomous {
     long startTime = System.currentTimeMillis();
 
     @Override
-    public void main() throws InterruptedException {
+    public void main() {
         if(once){
             hardwareMap.dcMotor.get("topLeft").setDirection(DcMotor.Direction.REVERSE);
             robot.markerServo.MarkerServo.setPosition(.5);
@@ -437,10 +439,10 @@ public class Autonomouss extends BaseAutonomous {
             case ("Forward23in"):
                 //driveEncoders(0.3, processor.getEncoderAmount(10, Units.INCH));
                 while(System.currentTimeMillis() - startTime < 1200) {
-                    robot.mDrive.setBotLeftPower(0.2);
-                    robot.mDrive.setBotRightPower(.2);
-                    robot.mDrive.setTopLeftPower(.2);
-                    robot.mDrive.setTopRightPower(.2);
+                    robot.mDrive.setBotLeftPower(pow1);
+                    robot.mDrive.setBotRightPower(pow1);
+                    robot.mDrive.setTopLeftPower(pow1);
+                    robot.mDrive.setTopRightPower(pow1);
 
                 }
                 stopTime();
@@ -451,24 +453,24 @@ public class Autonomouss extends BaseAutonomous {
                 break;
             case ("ParkOnBridge"):
                 if (robot.selector.color.equals("Red")) {
-                    driveEncoders(0.15, oneTile);
+                    driveEncoders(pow1, oneTile);
                 } else if (robot.selector.color.equals("Blue")) {
-                    driveEncoders(0.15, oneTile);
+                    driveEncoders(pow1, oneTile);
                 }
                 break;
             case ("MoveFoundationPark"):
                     if (robot.selector.color.equals("Red")) {
-                       /* strafeEncoders(-.2, oneTile);
+                       /* strafeEncoders(-pow1, oneTile);
                         stopTime();
-                        driveEncoders(-.15, twoTile);
+                        driveEncoders(-pow1, twoTile);
                         stopTime();*/
-                        //robot.mDrive.driveTime(new Vector(0.15,0), 1500);
+                        //robot.mDrive.driveTime(new Vector(0pow1,0), 1500);
 
                         while(System.currentTimeMillis() - startTime < 1200) {
-                            robot.mDrive.setBotLeftPower(0.2);
-                            robot.mDrive.setBotRightPower(-.2);
-                            robot.mDrive.setTopLeftPower(-.2);
-                            robot.mDrive.setTopRightPower(.2);
+                            robot.mDrive.setBotLeftPower(pow1);
+                            robot.mDrive.setBotRightPower(-pow1);
+                            robot.mDrive.setTopLeftPower(-pow1);
+                            robot.mDrive.setTopRightPower(pow1);
 
                         }
                         stopTime();
@@ -481,43 +483,44 @@ public class Autonomouss extends BaseAutonomous {
 
                         }
                         robot.mDrive.stopAllMotors();
-                        //robot.mDrive.driveTime(new Vector(0,-0.15), 2500);
+                        //robot.mDrive.driveTime(new Vector(0,-0pow1), 2500);
                         stopTime();
                         moveFound("Red");
 
                         stopTime();
-                        robot.mDrive.driveTime( new Vector(0.15,0), 3000);
-                        //strafeEncoders(.2,processor.getEncoderAmount(33, Units.INCH));
+                       // robot.mDrive.driveTime( new Vector(pow1,0), 3000);
+                        //strafeEncoders(pow1,processor.getEncoderAmount(33, Units.INCH));
                     } else if (robot.selector.color.equals("Blue")) {
                         long startTime = System.currentTimeMillis();
-                       /* strafeEncoders(.2,oneTile);
+                       /* strafeEncoders(pow1,oneTile);
                         stopTime();
-                        driveEncoders(-.15, twoTile);
+                        driveEncoders(-pow1, twoTile);
                         stopTime();*/
-                       // robot.mDrive.driveTime(new Vector(0.15,0), 2500);
+                       // robot.mDrive.driveTime(new Vector(0pow1,0), 2500);
                         while(System.currentTimeMillis() - startTime < 1200) {
-                            robot.mDrive.setBotLeftPower(-0.2);
-                            robot.mDrive.setBotRightPower(.2);
-                            robot.mDrive.setTopLeftPower(.2);
-                            robot.mDrive.setTopRightPower(-.2);
+                            robot.mDrive.setBotLeftPower(-pow1);
+                            robot.mDrive.setBotRightPower(pow1);
+                            robot.mDrive.setTopLeftPower(pow1);
+                            robot.mDrive.setTopRightPower(-pow1);
 
                         }
                         robot.mDrive.stopAllMotors();
                         stopTime();
-                        //robot.mDrive.driveTime(new Vector(0,-0.15), 2500);
+                        //robot.mDrive.driveTime(new Vector(0,-0pow1), 2500);
                         startTime = System.currentTimeMillis();
                         while(System.currentTimeMillis() - startTime < 3000) {
-                            robot.mDrive.setBotLeftPower(-0.02);
-                            robot.mDrive.setBotRightPower(-.1);
-                            robot.mDrive.setTopLeftPower(-0.02);
-                            robot.mDrive.setTopRightPower(-.1);
+                            robot.mDrive.setBotLeftPower(-pow1);
+                            robot.mDrive.setBotRightPower(-pow1);
+                            robot.mDrive.setTopLeftPower(-pow1);
+                            robot.mDrive.setTopRightPower(-pow1);
+
                         }
                         robot.mDrive.stopAllMotors();
                         stopTime();
                         moveFound("Red");
                         stopTime();
-                        robot.mDrive.driveTime( new Vector(-0.15,0), 3000);
-                        //strafeEncoders(-.2,processor.getEncoderAmount(33, Units.INCH));
+                       // robot.mDrive.driveTime( new Vector(-pow1,0), 3000);
+                        //strafeEncoders(-pow1,processor.getEncoderAmount(33, Units.INCH));
                         telemetry.update();
                     }
 

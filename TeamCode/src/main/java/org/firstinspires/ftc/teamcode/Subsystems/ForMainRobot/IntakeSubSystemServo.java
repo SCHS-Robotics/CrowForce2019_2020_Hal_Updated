@@ -29,20 +29,20 @@ public class IntakeSubSystemServo extends SubSystem {
 
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start()  {
         inputs = robot.pullControls(this);
     }
     @Override
-    public void handle () throws InterruptedException {
+    public void handle ()  {
         toggle.updateToggle(inputs.getBooleanInput(INTAKEBUTTON));
         if (toggle.getCurrentState()) {
             IntakeServo.setPosition(DOWN);
@@ -54,7 +54,7 @@ public class IntakeSubSystemServo extends SubSystem {
     }
 
     @Override
-    public void stop () throws InterruptedException {
+    public void stop ()  {
 
     }
 

@@ -10,7 +10,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.AutonomousSelector
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.FoundationGrabberSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.IntakeSubSystemServo;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.MarkerServoSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.MechanumDriveWOEncoders;
 import org.firstinspires.ftc.teamcode.Subsystems.OneTimeUse.EncoderSubsystem;
 import org.slf4j.Marker;
 
@@ -31,8 +30,9 @@ public class MainRobot extends Robot {
         grabber = new FoundationGrabberSubsystem(this, "arm");
         mDrive = new MechanumDrive(this, new MechanumDrive.Params("topLeft", "topRight", "bottomLeft", "bottomRight")
                 .setDriveStick(new Button(1, Button.VectorInputs.left_stick))
+                .setRevHubsInverted(true)
                 .setTurnStick(new Button(1, Button.DoubleInputs.right_stick_x))
-                .setConstantSpeedModifier(.3) .setSpeedModeMultiplier(.5)
+                .setConstantSpeedModifier(1) .setSpeedModeMultiplier(.5)
                 .setSpeedModeButton(new Button(1, Button.BooleanInputs.a))
         .setMotorRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER));        //blockIntakeMotor = new IntakeSubSystemMotors(this,"blockIntakeLeft", "blockIntakeRight");
         selector = new AutonomousSelectorSubsystemUsingConfig(this);

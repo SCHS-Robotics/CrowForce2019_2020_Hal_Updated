@@ -27,7 +27,7 @@ public class IntakeSubSystemMotors extends SubSystem {
     private DisplayMenu dMenu;
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
         if(robot.usesGUI()) {
             dMenu = new DisplayMenu(robot.gui);
             robot.gui.addMenu("buttonData", dMenu);
@@ -35,16 +35,16 @@ public class IntakeSubSystemMotors extends SubSystem {
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start()  {
         inputs = robot.pullControls(this);
     }
     @Override
-    public void handle () throws InterruptedException {
+    public void handle ()  {
         dMenu.addData("InButton", gpad.getBooleanInput(INBUTTON));
         dMenu.addData("OutButton", gpad.getBooleanInput(OUTBUTTON));
         if (gpad.getBooleanInput(INBUTTON) && gpad.getBooleanInput(OUTBUTTON)) {
@@ -63,7 +63,7 @@ public class IntakeSubSystemMotors extends SubSystem {
     }
 
     @Override
-    public void stop () throws InterruptedException {
+    public void stop ()  {
 
     }
 

@@ -19,7 +19,7 @@ public class DriveForwardAutonomous extends BaseAutonomous {
     }
 
     @Override
-    public void main() throws InterruptedException{
+    public void main() {
         robot.drive.driveTime(new Vector(0, .07), 3000);
     }
 }

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.Robot;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.SubSystem;
 import com.SCHSRobotics.HAL9001.util.annotations.AutonomousConfig;
+import com.SCHSRobotics.HAL9001.util.misc.ConfigData;
 import com.SCHSRobotics.HAL9001.util.misc.ConfigParam;
 
 import java.util.Map;
@@ -18,30 +19,30 @@ public class AutonomousSelectorSubsystemUsingConfig extends SubSystem {
     }
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
 
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
-        Map<String, Object> params = robot.pullNonGamepad(this);
-        autonomous = (String) params.get("Autonomous");
-        color = (String) params.get("Color");
-        startPos = (String) params.get("StartPosition");
+    public void start()  {
+        ConfigData params = robot.pullNonGamepad(this);
+        autonomous = params.getData("Autonomous", String.class);
+        color = params.getData("Color", String.class);
+        startPos = params.getData("StartPosition", String.class);
     }
 
     @Override
-    public void handle() throws InterruptedException {
+    public void handle()  {
 
     }
 
     @Override
-    public void stop() throws InterruptedException {
+    public void stop()  {
 
     }
     @AutonomousConfig

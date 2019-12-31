@@ -16,7 +16,7 @@ public class EncoderSubsystem extends SubSystem {
     }
 
     @Override
-    public void init() throws InterruptedException {
+    public void init()  {
 
         if(robot.usesGUI()) {
             dMenu = new DisplayMenu(robot.gui);
@@ -25,24 +25,24 @@ public class EncoderSubsystem extends SubSystem {
     }
 
     @Override
-    public void init_loop() throws InterruptedException {
+    public void init_loop()  {
 
     }
 
     @Override
-    public void start() throws InterruptedException {
+    public void start()  {
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     @Override
-    public void handle() throws InterruptedException {
+    public void handle()  {
         robot.telemetry.addData("Encoders", motor.getCurrentPosition());
         robot.telemetry.update();
     }
 
     @Override
-    public void stop() throws InterruptedException {
+    public void stop()  {
 
     }
 }
