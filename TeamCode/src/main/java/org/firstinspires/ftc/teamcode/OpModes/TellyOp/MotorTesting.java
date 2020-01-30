@@ -5,7 +5,6 @@ import com.SCHSRobotics.HAL9001.system.source.BaseRobot.Robot;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Robots.MotorTest;
-@TeleOp
 public class MotorTesting extends BaseTeleop {
     @Override
     protected Robot buildRobot() {

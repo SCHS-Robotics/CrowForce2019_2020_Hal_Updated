@@ -14,8 +14,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class IntakeSubSystemServo extends SubSystem {
     private CustomizableGamepad inputs;
     Servo IntakeServo;
-    private final int DOWN = 1;
-    private final double UP = 0.75;
+    private final int DOWN = 0;
+    private final double UP = 0.25;
     Toggle toggle = new Toggle(Toggle.ToggleTypes.flipToggle, true);
 
 
@@ -30,6 +30,7 @@ public class IntakeSubSystemServo extends SubSystem {
 
     @Override
     public void init()  {
+        IntakeServo.setPosition(UP);
     }
 
     @Override
@@ -58,12 +59,12 @@ public class IntakeSubSystemServo extends SubSystem {
 
     }
 
-    public void intake () {
+    public void intakeDown () {
         IntakeServo.setPosition(DOWN);
     }
 
 
-    public void output() {
+    public void intakeUp() {
             IntakeServo.setPosition(UP);
         }
 
@@ -80,7 +81,7 @@ public class IntakeSubSystemServo extends SubSystem {
     @TeleopConfig
     public static ConfigParam[] teleopConfig() {
         return new ConfigParam[]{
-                new ConfigParam(INTAKEBUTTON, Button.BooleanInputs.right_bumper,2)
+                new ConfigParam(INTAKEBUTTON, Button.BooleanInputs.x,2)
         };
     }
 }

@@ -1,5 +1,5 @@
-package org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot;
 
+package org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot;
 import com.SCHSRobotics.HAL9001.system.menus.DisplayMenu;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.Robot;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.SubSystem;
@@ -10,7 +10,7 @@ import com.SCHSRobotics.HAL9001.util.misc.CustomizableGamepad;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class IntakeSubSystemMotors extends SubSystem {
-    private CustomizableGamepad inputs;
+    CustomizableGamepad input;
     DcMotor InL;
     DcMotor InR;
 
@@ -23,16 +23,7 @@ public class IntakeSubSystemMotors extends SubSystem {
         usesConfig = true;
     }
 
-    CustomizableGamepad gpad;
     private DisplayMenu dMenu;
-
-    @Override
-    public void init()  {
-        if(robot.usesGUI()) {
-            dMenu = new DisplayMenu(robot.gui);
-            robot.gui.addMenu("buttonData", dMenu);
-        }
-    }
 
     @Override
     public void init_loop()  {
@@ -41,19 +32,19 @@ public class IntakeSubSystemMotors extends SubSystem {
 
     @Override
     public void start()  {
-        inputs = robot.pullControls(this);
+        input = robot.pullControls(this);
     }
     @Override
     public void handle ()  {
-        dMenu.addData("InButton", gpad.getBooleanInput(INBUTTON));
-        dMenu.addData("OutButton", gpad.getBooleanInput(OUTBUTTON));
-        if (gpad.getBooleanInput(INBUTTON) && gpad.getBooleanInput(OUTBUTTON)) {
+        dMenu.addData("InButton", input.getBooleanInput(INBUTTON));
+        dMenu.addData("OutButton", input.getBooleanInput(OUTBUTTON));
+        if (input.getBooleanInput(INBUTTON) && input.getBooleanInput(OUTBUTTON)) {
             InL.setPower(0);
             InR.setPower(0);
-        } else if (gpad.getBooleanInput(INBUTTON)) {
+        } else if (input.getBooleanInput(INBUTTON)) {
             InL.setPower(-1);
             InR.setPower(1);
-        } else if (gpad.getBooleanInput(OUTBUTTON)) {
+        } else if (input.getBooleanInput(OUTBUTTON)) {
             InL.setPower(1);
             InR.setPower(-1);
         } else {
@@ -65,6 +56,14 @@ public class IntakeSubSystemMotors extends SubSystem {
     @Override
     public void stop ()  {
 
+    }
+
+    @Override
+    public void init()  {
+        if(robot.usesGUI()) {
+            dMenu = new DisplayMenu(robot.gui);
+            robot.gui.addMenu("buttonData", dMenu);
+        }
     }
 
     public void intake(double ms) {
@@ -88,8 +87,7 @@ public class IntakeSubSystemMotors extends SubSystem {
     }
 
     @Override
-    protected void initVars() {
-        super.initVars();
+    protected void initVars() {       super.initVars();
 
     }
 
@@ -97,8 +95,8 @@ public class IntakeSubSystemMotors extends SubSystem {
     @TeleopConfig
     public static ConfigParam[] teleopConfig() {
         return new ConfigParam[]{
-                new ConfigParam("InButton", Button.BooleanInputs.right_bumper),
-                new ConfigParam("OutButton", Button.BooleanInputs.left_bumper)
+                new ConfigParam("InButton", Button.BooleanInputs.right_bumper,2),
+                new ConfigParam("OutButton", Button.BooleanInputs.left_bumper,2)
         };
     }
 }

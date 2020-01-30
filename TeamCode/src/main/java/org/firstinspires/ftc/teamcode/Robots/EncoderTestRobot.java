@@ -20,7 +20,7 @@ public class EncoderTestRobot extends Robot {
     public EncoderTestRobot(OpMode opMode) {
         super(opMode);
 
-        EncoderTestRobot = new EncoderSubsystem(this, "strafeEncoder");
+        //EncoderTestRobot = new EncoderSubsystem(this, "bottomRight");
         //skystoneDetector = new opencvSkystoneDetector();
 
 

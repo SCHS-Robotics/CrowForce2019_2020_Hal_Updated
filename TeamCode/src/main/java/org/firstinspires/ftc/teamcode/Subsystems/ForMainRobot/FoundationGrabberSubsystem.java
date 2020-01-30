@@ -9,6 +9,7 @@ import com.SCHSRobotics.HAL9001.util.misc.ConfigParam;
 import com.SCHSRobotics.HAL9001.util.misc.CustomizableGamepad;
 import com.SCHSRobotics.HAL9001.util.misc.Toggle;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import static java.lang.Thread.sleep;
 
@@ -16,16 +17,19 @@ public class FoundationGrabberSubsystem extends SubSystem {
 
     private final String ARMBUTTON = "armToggleButton";
     private final String ARMUPBUTTON = "armUpButton";
+    Servo armL;
     CRServo arm;
+    Servo armR;
     private final int UP = 1;
     private final int DOWN = 0;
     CustomizableGamepad gpad;
     Toggle toggle;
     DisplayMenu fMenu;
 
-    public FoundationGrabberSubsystem(Robot r, String servoName) {
+    public FoundationGrabberSubsystem(Robot r, String servoNameL, String servoNameR) {
         super(r);
-        arm = r.hardwareMap.crservo.get(servoName);
+        armL = r.hardwareMap.servo.get(servoNameL);
+        armR = r.hardwareMap.servo.get(servoNameR);
         usesConfig = true;
         toggle = new Toggle(Toggle.ToggleTypes.flipToggle, false);
     }
@@ -39,6 +43,7 @@ public class FoundationGrabberSubsystem extends SubSystem {
         }
     }
 
+
     @Override
     public void init_loop()  {
 
@@ -51,15 +56,14 @@ public class FoundationGrabberSubsystem extends SubSystem {
 
     @Override
     public void handle()  {
-        if(gpad.getBooleanInput(ARMUPBUTTON)) {
-            arm.setPower(-1);
-        }
-
-        else if (toggle.getCurrentState()) {
-            arm.setPower(1);
+        toggle.updateToggle(gpad.getBooleanInput("armToggleButton"));
+        if (toggle.getCurrentState()) {
+            armL.setPosition(-1);
+            armR.setPosition(-1);
         }
          else {
-            arm.setPower(0);
+            armL.setPosition(1);
+            armR.setPosition(1);
         }
 
 
@@ -80,26 +84,18 @@ public class FoundationGrabberSubsystem extends SubSystem {
 
     public void toggleDown() {
         long startTime = System.currentTimeMillis();
-        arm.setPower(1);
+        armL.setPosition(1);
+        armR.setPosition(1);
 
-        while (System.currentTimeMillis() - startTime < 470) {
-            robot.telemetry.addData("death","");
-            arm.setPower(1);
-            robot.telemetry.update();
-        }
-        arm.setPower(0);
+
     }
 
     public void toggleUp() {
         long startTime = System.currentTimeMillis();
-        arm.setPower(-1);
+        armL.setPosition(-1);
+        armR.setPosition(-.75);
 
-        while (System.currentTimeMillis() - startTime < 470) {
-            robot.telemetry.addData("death","");
-            arm.setPower(-1);
-            robot.telemetry.update();
-        }
-        arm.setPower(0);
+
     }
     
     public void toggleOff(){arm.setPower(.5);}
@@ -118,8 +114,7 @@ public class FoundationGrabberSubsystem extends SubSystem {
     @TeleopConfig
     public static ConfigParam[] teleopConfig() {
         return new ConfigParam[] {
-                new ConfigParam("armToggleButton", Button.BooleanInputs.b,2),
-                new ConfigParam("armUpButton", Button.BooleanInputs.a,2)
+                new ConfigParam("armToggleButton", Button.BooleanInputs.a,2),
         };
     }
 }

@@ -54,6 +54,7 @@ public class AutonomousSelectorSubsystemUsingConfig extends SubSystem {
                         "MoveFoundationPark",
                         "MaxPoints",
                         "PID",
+                        "OpenCV",
                         "Turn90"},
                         "ParkOnBridge"),
                 new ConfigParam("Color", new String[] {
