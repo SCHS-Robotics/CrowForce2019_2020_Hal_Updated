@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot;
 
+import com.SCHSRobotics.HAL9001.system.menus.DisplayMenu;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.Robot;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.SubSystem;
 import com.SCHSRobotics.HAL9001.util.annotations.TeleopConfig;
@@ -7,28 +8,32 @@ import com.SCHSRobotics.HAL9001.util.misc.Button;
 import com.SCHSRobotics.HAL9001.util.misc.ConfigParam;
 import com.SCHSRobotics.HAL9001.util.misc.CustomizableGamepad;
 import com.SCHSRobotics.HAL9001.util.misc.Toggle;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class IntakeSubSystemServo extends SubSystem {
+public class NewIntakeSubSystemServo extends SubSystem {
     private CustomizableGamepad inputs;
     Servo IntakeServo;
-    private final int DOWN = 0;
-    private final double UP = 0.25;
+    private final int DOWN = 1;
+    private final double UP = 0.75;
     Toggle toggle = new Toggle(Toggle.ToggleTypes.flipToggle, true);
-
 
     static final String INTAKEBUTTON = "IntakeButton";
 
-    public IntakeSubSystemServo(Robot r, String servo) {
+    public NewIntakeSubSystemServo(Robot r, String servo) {
         super(r);
         IntakeServo = robot.hardwareMap.servo.get(servo);
         usesConfig = true;
     }
 
+    private DisplayMenu dMenu;
 
     @Override
     public void init()  {
-        IntakeServo.setPosition(UP);
+        if(robot.usesGUI()) {
+            dMenu = new DisplayMenu(robot.gui);
+            robot.gui.addMenu("buttonData", dMenu);
+        }
     }
 
     @Override
@@ -42,6 +47,7 @@ public class IntakeSubSystemServo extends SubSystem {
     }
     @Override
     public void handle ()  {
+        dMenu.addData("IntakeButton", inputs.getBooleanInput(INTAKEBUTTON));
         toggle.updateToggle(inputs.getBooleanInput(INTAKEBUTTON));
         if (toggle.getCurrentState()) {
             IntakeServo.setPosition(DOWN);
@@ -49,7 +55,6 @@ public class IntakeSubSystemServo extends SubSystem {
         else {
             IntakeServo.setPosition(UP);
         }
-
     }
 
     @Override
@@ -57,14 +62,14 @@ public class IntakeSubSystemServo extends SubSystem {
 
     }
 
-    public void intakeDown () {
+    public void intake () {
         IntakeServo.setPosition(DOWN);
     }
 
 
-    public void intakeUp() {
-            IntakeServo.setPosition(UP);
-        }
+    public void output() {
+        IntakeServo.setPosition(UP);
+    }
 
 
 
@@ -79,7 +84,7 @@ public class IntakeSubSystemServo extends SubSystem {
     @TeleopConfig
     public static ConfigParam[] teleopConfig() {
         return new ConfigParam[]{
-                new ConfigParam(INTAKEBUTTON, Button.BooleanInputs.x,2)
+                new ConfigParam(INTAKEBUTTON, Button.BooleanInputs.right_bumper),
         };
     }
 }

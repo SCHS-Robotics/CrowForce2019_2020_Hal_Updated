@@ -3,17 +3,15 @@ package org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot;
 import com.SCHSRobotics.HAL9001.system.menus.DisplayMenu;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.Robot;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.SubSystem;
-import com.SCHSRobotics.HAL9001.system.subsystems.MechanumDrive;
-import com.SCHSRobotics.HAL9001.util.misc.Button;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class EncoderSubsystem extends SubSystem {
 
     DisplayMenu dMenu;
     DcMotor motor;
-    MechanumDrive mDrive;
+    CustomMechinumDrive mDrive;
 
-    public EncoderSubsystem(Robot r, String encoderMotor, MechanumDrive mDrive) {
+    public EncoderSubsystem(Robot r, String encoderMotor, CustomMechinumDrive mDrive) {
         super(r);
         this.mDrive = mDrive;
         motor = robot.hardwareMap.dcMotor.get(encoderMotor);

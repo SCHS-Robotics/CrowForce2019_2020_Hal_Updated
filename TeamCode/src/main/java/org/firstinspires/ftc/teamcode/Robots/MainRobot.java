@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robots;
 
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.Robot;
-import com.SCHSRobotics.HAL9001.system.subsystems.MechanumDrive;
 import com.SCHSRobotics.HAL9001.util.control.PIDController;
 import com.SCHSRobotics.HAL9001.util.functional_interfaces.BiFunction;
 import com.SCHSRobotics.HAL9001.util.misc.Button;
@@ -11,11 +10,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.AutonomousSelectorSubsystemUsingConfig;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.ComputerVision.opencvSkystoneDetector_v2;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.CustomMechinumDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.EncoderSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.FoundationGrabberSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.IntakeSubSystemMotors;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.IntakeSubSystemServo;
 import org.firstinspires.ftc.teamcode.Subsystems.ForMainRobot.MarkerServoSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.OneTimeUse.EncoderSubsystem;
 
 import static java.lang.Math.PI;
 
@@ -67,7 +66,7 @@ public class MainRobot extends Robot {
         selector = new AutonomousSelectorSubsystemUsingConfig(this);
         blockIntakeServo = new IntakeSubSystemServo(this, "blockIntakeServo");
         blockIntakeMotors = new IntakeSubSystemMotors(this, "leftIntake", "rightIntake");
-        distance = new EncoderSubsystem(this, "forwardEncoder", "strafeEncoder");
+        distance = new EncoderSubsystem(this, "forwardEncoder", mDrive);
         markerServo = new MarkerServoSubsystem(this, "markerOutput");
         openCV = new opencvSkystoneDetector_v2(this);
         mDrive.getMotors()[0].setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -81,5 +80,6 @@ public class MainRobot extends Robot {
         putSubSystem("MotorIntake", blockIntakeMotors);
         putSubSystem("MarkerServo", markerServo);
         putSubSystem("OpenCV", openCV);
+        putSubSystem("EncoderSubsystem", distance);
     }
 }

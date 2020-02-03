@@ -86,8 +86,6 @@ public class FoundationGrabberSubsystem extends SubSystem {
         long startTime = System.currentTimeMillis();
         armL.setPosition(1);
         armR.setPosition(1);
-
-
     }
 
     public void toggleUp() {

@@ -5,8 +5,6 @@ package org.firstinspires.ftc.teamcode.OpModes.Autonomous;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.BaseAutonomous;
 import com.SCHSRobotics.HAL9001.system.source.BaseRobot.Robot;
 import com.SCHSRobotics.HAL9001.util.annotations.StandAlone;
-import com.SCHSRobotics.HAL9001.util.exceptions.DumpsterFireException;
-import com.SCHSRobotics.HAL9001.util.exceptions.InvalidMoveCommandException;
 import com.SCHSRobotics.HAL9001.util.math.EncoderToDistanceProcessor;
 import com.SCHSRobotics.HAL9001.util.math.Units;
 import com.SCHSRobotics.HAL9001.util.math.Vector;
@@ -14,14 +12,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-import org.firstinspires.ftc.robotcore.external.Supplier;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Robots.MainRobot;
 
 import java.text.DecimalFormat;
 
 import static java.lang.Math.PI;
-import static java.lang.Math.pow;
 
 
 @StandAlone
@@ -68,16 +64,16 @@ public class Autonomouss extends BaseAutonomous {
         while (System.currentTimeMillis() - startTime < 1000) {
         }
     }
-    
+
     private void driveEncoders(double power, int encoder) {
         int encoderStart = robot.distance.fEncoders();
-        robot.mDrive.drive(new Vector(0, power));
-        telemetry.addData("Before: ", power);
+        robot.mDrive.drive(new Vector(0, -power));
+        telemetry.addData("Before: ", -power);
         telemetry.update();
         while (Math.abs(robot.distance.fEncoders() - encoderStart) < encoder) {
             double temp = Math.abs(robot.distance.fEncoders() - encoderStart);
             telemetry.addData("Forward Encoders:", robot.distance.fEncoders());
-            telemetry.addData("Before: ", power);
+            telemetry.addData("Before: ", -power);
             telemetry.update();
         }
         robot.mDrive.stopAllMotors();
@@ -88,7 +84,7 @@ public class Autonomouss extends BaseAutonomous {
         //turnEncoders(0.3, 400 + processor.getEncoderAmount(distDif, Units.INCH));
         robot.mDrive.turnTo(90);
     }
-    
+
     public static double mod(double number, double number2){
         byte negative = 1;
 
@@ -117,119 +113,119 @@ public class Autonomouss extends BaseAutonomous {
 
     public void getBlock1res(String color){
         if (color.equalsIgnoreCase("Blue")){
-            driveEncoders(pow1, 1500);
-            nin();
-            strafeEncoders(-pow1, oneTile);
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock1);
-            robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, specBlock1);
-            driveEncoders(pow1, 1500);
-            strafeEncoders(-pow1, oneTile);
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock1);
-            robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, twoTile);
-
-        }
-        else{
             driveEncoders(-pow1, 1500);
             nin();
             strafeEncoders(-pow1, oneTile);
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock3);
+            driveEncoders(-pow1, specBlock1);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, specBlock3);
-            driveEncoders(pow1, 1500);
+            driveEncoders(-pow1, specBlock1);
+            driveEncoders(-pow1, 1500);
             strafeEncoders(-pow1, oneTile);
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock3);
+            driveEncoders(-pow1, specBlock1);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, twoTile);
+            driveEncoders(-pow1, twoTile);
+
+        }
+        else{
+            driveEncoders(pow1, 1500);
+            nin();
+            strafeEncoders(-pow1, oneTile);
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(-pow1, oneTile);
+            driveEncoders(-pow1, specBlock3);
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(-pow1, specBlock3);
+            driveEncoders(-pow1, 1500);
+            strafeEncoders(-pow1, oneTile);
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(-pow1, oneTile);
+            driveEncoders(-pow1, specBlock3);
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(-pow1, twoTile);
         }
     }
 
     public void getBlock2res(String color){
         if (color.equalsIgnoreCase("Blue")){
-            driveEncoders(pow1, 1500);
+            driveEncoders(-pow1, 1500);
             nin();
-            driveEncoders(pow1, 2000);
+            driveEncoders(-pow1, 2000);
             strafeEncoders(-pow1, oneTile);
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock2);
+            driveEncoders(-pow1, specBlock2);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, specBlock2);
-            driveEncoders(pow1, 1500);
+            driveEncoders(-pow1, specBlock2);
+            driveEncoders(-pow1, 1500);
             strafeEncoders(-pow1, oneTile);
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock2);
+            driveEncoders(-pow1, specBlock2);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, twoTile);
+            driveEncoders(-pow1, twoTile);
 
         }
         else{
-            driveEncoders(-pow1, 1500);
-            nin();
-            driveEncoders(pow1, 2000);
-            strafeEncoders(-pow1, oneTile);
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock2);
-            robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, specBlock2);
             driveEncoders(pow1, 1500);
+            nin();
+            driveEncoders(-pow1, 2000);
             strafeEncoders(-pow1, oneTile);
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock2);
+            driveEncoders(-pow1, specBlock2);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, twoTile);
+            driveEncoders(-pow1, specBlock2);
+            driveEncoders(-pow1, 1500);
+            strafeEncoders(-pow1, oneTile);
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(-pow1, oneTile);
+            driveEncoders(-pow1, specBlock2);
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(-pow1, twoTile);
         }
     }
 
     public void getBlock3res(String color){
         if (color.equalsIgnoreCase("Blue")){
-            driveEncoders(pow1, 1500);
-            nin();
-            driveEncoders(pow1, 2500);
-            strafeEncoders(-pow1, oneTile);
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock3);
-            robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, specBlock3);
-            driveEncoders(pow1, 1500);
-            strafeEncoders(-pow1, oneTile);
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock3);
-            robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, twoTile);
-
-        }
-        else{
-            driveEncoders(pow1, 1500);
+            driveEncoders(-pow1, 1500);
             nin();
             driveEncoders(-pow1, 2500);
             strafeEncoders(-pow1, oneTile);
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock1);
+            driveEncoders(-pow1, specBlock3);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, specBlock1);
-            driveEncoders(pow1, 1500);
+            driveEncoders(-pow1, specBlock3);
+            driveEncoders(-pow1, 1500);
             strafeEncoders(-pow1, oneTile);
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(-pow1, oneTile);
-            driveEncoders(pow1, specBlock1);
+            driveEncoders(-pow1, specBlock3);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, twoTile);
+            driveEncoders(-pow1, twoTile);
+
+        }
+        else{
+            driveEncoders(-pow1, 1500);
+            nin();
+            driveEncoders(pow1, 2500);
+            strafeEncoders(-pow1, oneTile);
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(-pow1, oneTile);
+            driveEncoders(-pow1, specBlock1);
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(-pow1, specBlock1);
+            driveEncoders(-pow1, 1500);
+            strafeEncoders(-pow1, oneTile);
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(-pow1, oneTile);
+            driveEncoders(-pow1, specBlock1);
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(-pow1, twoTile);
         }
     }
 
@@ -246,7 +242,7 @@ public class Autonomouss extends BaseAutonomous {
             robot.grabber.toggleDown();
             long asd = System.currentTimeMillis();
             while (System.currentTimeMillis() - asd <1000) {}
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
             robot.mDrive.driveTime(new Vector(0,-1), 3000);
             //turnTo(-PI/2);
             robot.grabber.toggleUp();
@@ -256,173 +252,173 @@ public class Autonomouss extends BaseAutonomous {
     public void maxPoints1Res(String color) {
         if (color.equalsIgnoreCase("Blue")) {
             robot.grabber.toggleUp();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
             nin();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
             strafeEncoders(-pow1, cmprocessor.getEncoderAmount(63, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-            driveEncoders(pow1, specBlock1);
+            driveEncoders(-pow1, specBlock1);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
             strafeEncoders(-pow1, cmprocessor.getEncoderAmount(10, Units.CENTIMETERS));
             turnTo(-PI);
-            //driveEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
             moveFound("Blue");
-            //driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
-            /*//following strafe is gonna be a different number
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+            //following strafe is gonna be a different number
             strafeEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
-            driveEncoders(pow1, specBlock1);
-            /*negnin(); negnin(); driveEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
+            driveEncoders(-pow1, specBlock1);
+            //negnin(); negnin(); driveEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
         } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock1); negnin();*/
             robot.grabber.toggleUp();
-            driveEncoders(-pow1,cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
+            driveEncoders(pow1,cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
             nin();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
             strafeEncoders(-pow1, cmprocessor.getEncoderAmount(66, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-            driveEncoders(-pow1, specBlock3);
+            driveEncoders(pow1, specBlock3);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             turnTo(PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
             moveFound("Red");
             strafeEncoders(-pow1, cmprocessor.getEncoderAmount(120, Units.CENTIMETERS));
-           // driveEncoders(-pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
-            /*turnTo(-2*PI);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(35, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
+            turnTo(-2*PI);
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(35, Units.CENTIMETERS));
             turnTo(-3* PI/2);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20,Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(20,Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
             turnTo(-PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             turnTo(-Math.PI/2);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
-           /* driveEncoders(-pow1, specBlock1 + cmprocessor.getEncoderAmount(50, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+            driveEncoders(pow1, specBlock1 + cmprocessor.getEncoderAmount(50, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));*/
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
         }
     }
 
     public void maxPoints2Res(String color) {
         if (color.equalsIgnoreCase("Blue") ) {
             robot.grabber.toggleUp();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
             nin();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(66, Units.CENTIMETERS));
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-            driveEncoders(pow1, specBlock2);
-            robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(10, Units.CENTIMETERS));
-            turnTo(-PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
-            moveFound("Blue");
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(120,Units.CENTIMETERS));
-            //driveEncoders(-pow1,  cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
-            /*//following strafe is gonna be a different number
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
-            driveEncoders(pow1, specBlock2);
-            /*negnin(); negnin(); driveEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
-            robot.blockIntakeServo.intakeUp();
-            //driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
-        } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock2); negnin();*/
-            robot.grabber.toggleUp();
-            driveEncoders(-pow1,cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
-            nin();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(6, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
             strafeEncoders(-pow1, cmprocessor.getEncoderAmount(66, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             driveEncoders(-pow1, specBlock2);
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(10, Units.CENTIMETERS));
+            turnTo(-PI);
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
+            moveFound("Blue");
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(120,Units.CENTIMETERS));
+            driveEncoders(pow1,  cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+            //following strafe is gonna be a different number
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(-pow1, specBlock2);
+            /*negnin(); negnin(); driveEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+        } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock2); negnin();*/
+            robot.grabber.toggleUp();
+            driveEncoders(pow1,cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
+            nin();
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(6, Units.CENTIMETERS));
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(66, Units.CENTIMETERS));
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            driveEncoders(pow1, specBlock2);
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             turnTo(PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
             moveFound("Red");
             strafeEncoders(pow1, cmprocessor.getEncoderAmount(120, Units.CENTIMETERS));
-            //driveEncoders(pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
-            /*turnTo(-2*PI);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(35, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
+            turnTo(-2*PI);
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(35, Units.CENTIMETERS));
             turnTo(-3* PI/2);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20,Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(20,Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
             turnTo(-PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             turnTo(-Math.PI/2);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
-           /* driveEncoders(-pow1, specBlock2 + cmprocessor.getEncoderAmount(50, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+            driveEncoders(pow1, specBlock2 + cmprocessor.getEncoderAmount(50, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));*/
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
         }
     }
 
     public void maxPoints3Res(String color) {
         if (color.equalsIgnoreCase("Blue")) { /* negnin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock3); nin();*/
             robot.grabber.toggleUp();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(3, Units.CENTIMETERS));
             nin();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(6, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(6, Units.CENTIMETERS));
             strafeEncoders(-pow1, cmprocessor.getEncoderAmount(63, Units.CENTIMETERS));
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-            driveEncoders(pow1, specBlock3);
-            robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(10, Units.CENTIMETERS));
-            turnTo(-PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
-            moveFound("Blue");
-       //     driveEncoders(pow1, specBlock3 + cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
-            /*//following strafe is gonna be a different number
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-            robot.blockIntakeServo.intakeDown();
-            strafeEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
-            driveEncoders(pow1, specBlock3);
-            /*negnin(); negnin(); driveEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
-            robot.blockIntakeServo.intakeUp();
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(120, Units.CENTIMETERS));
-            // driveEncoders(-pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
-        } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock3);*/
-            robot.grabber.toggleUp();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
-            nin();
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(4, Units.CENTIMETERS));
-            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(66, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
             strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             driveEncoders(-pow1, specBlock3);
             robot.blockIntakeServo.intakeUp();
             driveEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(10, Units.CENTIMETERS));
+            turnTo(-PI);
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
+            moveFound("Blue");
+            driveEncoders(-pow1, specBlock3 + cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+            //following strafe is gonna be a different number
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(-pow1, specBlock3);
+            /*negnin(); negnin(); driveEncoders(pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(3, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); negnin(); negnin();*/
+            robot.blockIntakeServo.intakeUp();
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(120, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
+        } else { /*nin(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, processor.getEncoderAmount(2, Units.INCH)); robot.blockIntakeServo.intakeUp(); strafeEncoders(-pow1, blockPos); driveEncoders(pow1, specBlock3);*/
+            robot.grabber.toggleUp();
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(3,Units.CENTIMETERS));
+            nin();
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(4, Units.CENTIMETERS));
+            strafeEncoders(-pow1, cmprocessor.getEncoderAmount(66, Units.CENTIMETERS));
+            robot.blockIntakeServo.intakeDown();
+            strafeEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            driveEncoders(pow1, specBlock3);
+            robot.blockIntakeServo.intakeUp();
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
             turnTo(PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(40, Units.CENTIMETERS));
             moveFound("Red");
             strafeEncoders(pow1, cmprocessor.getEncoderAmount(120, Units.CENTIMETERS));
-           // driveEncoders(-pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
-           /* turnTo(-2*PI);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(35, Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(100, Units.CENTIMETERS));
+            turnTo(-2*PI);
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(35, Units.CENTIMETERS));
             turnTo(-3* PI/2);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20,Units.CENTIMETERS));
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(20,Units.CENTIMETERS));
             robot.blockIntakeServo.intakeDown();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(20, Units.CENTIMETERS));
             turnTo(-PI);
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
-          0  turnTo(-Math.PI/2);
-            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
-           /* driveEncoders(-pow1, specBlock3 + cmprocessor.getEncoderAmount(50, Units.CENTIMETERS));
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(30, Units.CENTIMETERS));
+            turnTo(-Math.PI/2);
+            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
+            driveEncoders(pow1, specBlock3 + cmprocessor.getEncoderAmount(50, Units.CENTIMETERS));
             robot.blockIntakeServo.intakeUp();
-            driveEncoders(pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));*/
+            driveEncoders(-pow1, cmprocessor.getEncoderAmount(60, Units.CENTIMETERS));
         }
     }
 
@@ -648,7 +644,7 @@ public class Autonomouss extends BaseAutonomous {
                     if (robot.selector.color.equals("Red")) {
                         robot.grabber.toggleUp();
                         strafeEncoders(-pow1, oneTile - 500);
-                        driveEncoders(pow1-.3, twoTile -300);
+                        driveEncoders(-pow1-.3, twoTile -300);
                         moveFound("Red");
                        // driveEncoders(-pow1, processor.getEncoderAmount(57, Units.INCH) );
                         strafeEncoders(pow1, twoTile +4700);
@@ -657,7 +653,7 @@ public class Autonomouss extends BaseAutonomous {
                     }  else if (robot.selector.color.equals("Blue")) {
                         robot.grabber.toggleUp();
                         strafeEncoders(pow1, oneTile - 500);
-                        driveEncoders(pow1-0.3, twoTile - 300);
+                        driveEncoders(-pow1-0.3, twoTile - 300);
                         moveFound("Blue");
                         //driveEncoders(-pow1, processor.getEncoderAmount(57, Units.INCH));
                         strafeEncoders(-pow1, twoTile + 4700);

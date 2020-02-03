@@ -6,7 +6,6 @@ import com.SCHSRobotics.HAL9001.util.annotations.AutonomousConfig;
 import com.SCHSRobotics.HAL9001.util.misc.ConfigData;
 import com.SCHSRobotics.HAL9001.util.misc.ConfigParam;
 
-import java.util.Map;
 
 public class AutonomousSelectorSubsystemUsingConfig extends SubSystem {
 
