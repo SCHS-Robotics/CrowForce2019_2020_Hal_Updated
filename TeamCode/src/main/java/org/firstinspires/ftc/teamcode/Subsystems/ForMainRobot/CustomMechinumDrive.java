@@ -34,6 +34,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.teamcode.Robots.MainRobot;
 
 import static java.lang.Math.PI;
 
@@ -1025,22 +1026,13 @@ public class CustomMechinumDrive extends SubSystem {
 
                 displacement.rotate(-(PI / 4));
 
-                thresh1 = Math.abs(displacement.x);
-                thresh2 = Math.abs(displacement.y);
 
-                waitWhile(new Supplier<Boolean>() {
-                              @Override
-                              public Boolean get() {
-                                  return Math.abs(getTopLeftEncoderPos() - initVals[0]) < thresh1 && Math.abs(getTopRightEncoderPos() - initVals[1]) < thresh2 && Math.abs(getBotLeftEncoderPos() - initVals[2]) < thresh2 && Math.abs(getBotRightEncoderPos() - initVals[3]) < thresh1;
-                              }
-                          },
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                drive(vcpy, stabilityCtrl);
-                            }
-                        });
-                break;
+                thresh1 = ((MainRobot) robot).distance.fEncoders();
+                waitWhile(new Supplier () { @Override public Boolean get() {
+                    return Math.abs(thresh1 - ((MainRobot) robot).distance.fEncoders()) <encoders;
+                }
+                }, new Runnable() { @Override public void run() { drive(vcpy, stabilityCtrl); } }); break;
+
             case FIELD_CENTRIC_TTA:
             case FIELD_CENTRIC:
                 displacement.rotate(-((PI / 4) + getCurrentAngle()));

@@ -87,8 +87,8 @@ public class IntakeSubSystemMotors extends SubSystem {
     }
 
     @Override
-    protected void initVars() {       super.initVars();
-
+    protected void initVars() {
+        super.initVars();
     }
 
 

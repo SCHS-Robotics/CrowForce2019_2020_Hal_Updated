@@ -12,8 +12,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class IntakeSubSystemServo extends SubSystem {
     private CustomizableGamepad inputs;
     Servo IntakeServo;
-    private final int DOWN = 0;
-    private final double UP = 0.25;
+    private final double DOWN = -90;
+    private final double UP = 180;
     Toggle toggle = new Toggle(Toggle.ToggleTypes.flipToggle, true);
 
 

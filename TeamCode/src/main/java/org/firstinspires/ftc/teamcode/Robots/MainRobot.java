@@ -51,7 +51,27 @@ public class MainRobot extends Robot {
                 return Math.abs(ccw) < Math.abs(cw) ? ccw : cw;
             }
         });
+        PIDController stability = new PIDController(0.055, 0, 0, new BiFunction<Double,Double,Double>() {
+            @Override
+            public Double apply(Double target, Double current) {
+                BiFunction<Double, Double, Double> mod = new BiFunction<Double, Double, Double>() {
+                    @Override
+                    public Double apply(Double x, Double m) {
+                        return (x % m + m) % m;
+                    }
+                };
+
+                double m = 2 * PI;
+
+                //cw - ccw +
+                double cw = mod.apply(mod.apply(current, m) - mod.apply(target, m), m);
+                double ccw = -mod.apply(mod.apply(target, m) - mod.apply(current, m), m);
+
+                return Math.abs(ccw) < Math.abs(cw) ? ccw : cw;
+            }
+        });
         dsa.deadband = PI / 90;
+        stability.deadband = 0;
 
         startGui(new Button(1, Button.BooleanInputs.y));
         grabber = new FoundationGrabberSubsystem(this, "armL", "armR");
@@ -62,11 +82,12 @@ public class MainRobot extends Robot {
                 .setSpeedModeMultiplier(.5)
                 .setSpeedModeButton(new Button(1, Button.BooleanInputs.a))
                 .setTurnPID(dsa)
+               // .setStabilityPID(stability)
                 .setImuNumber(2));          //blockIntakeMotor = new IntakeSubSystemMotors(this,"blockIntakeLeft", "blockIntakeRight");
         selector = new AutonomousSelectorSubsystemUsingConfig(this);
         blockIntakeServo = new IntakeSubSystemServo(this, "blockIntakeServo");
         blockIntakeMotors = new IntakeSubSystemMotors(this, "leftIntake", "rightIntake");
-        distance = new EncoderSubsystem(this, "forwardEncoder", mDrive);
+        distance = new EncoderSubsystem(this, "forwardEncoder", "strafeEncoder");
         markerServo = new MarkerServoSubsystem(this, "markerOutput");
         openCV = new opencvSkystoneDetector_v2(this);
         mDrive.getMotors()[0].setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

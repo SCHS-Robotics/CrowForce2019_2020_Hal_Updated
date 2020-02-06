@@ -34,12 +34,12 @@ public class opencvSkystoneDetector_v2 extends SubSystem {
     public static int skystoneInd = 0;
     private static double rectHeight = 1.5 / 8.0, rectWidth = 0.6 / 8.0;
 
-    private static double offsetX = -1.0 / 8.0; //changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
+    private static double offsetX = -0.7 / 8.0; //changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
     private static double offsetY = 0.0; //changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static double[] midPos = {4.0 / 8.0 + offsetX, 4.0 / 8.0 + offsetY};//0 = col, 1 = row
-    private static double[] upPos = {4.0 / 8.0 + offsetX, 2.5 / 8.0 + offsetY};
-    private static double[] downPos = {4.0 / 8.0 + offsetX, 5.5 / 8.0 + offsetY};
+    private static double[] midPos = {4.0 / 8.0 + offsetX, 3.0 / 8.0 + offsetY};//0 = col, 1 = row
+    private static double[] upPos = {4.0 / 8.0 + offsetX, 1.5 / 8.0 + offsetY};
+    private static double[] downPos = {4.0 / 8.0 + offsetX, 4.5 / 8.0 + offsetY};
     //moves all rectangles right or left by amount. units are in ratio to monitor
 
     private int rows = 640, cols = 480;
